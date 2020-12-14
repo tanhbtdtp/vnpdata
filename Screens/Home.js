@@ -11,7 +11,7 @@ render(){
                   source={{
                     uri: 'http://ttkddongthap.vn/tainguyen/images/toanha_ttkd.jpg',
                   }}
-                  style={styles.imgCaNhan}
+                  style={styles.imgHeader}
                 />        
        <View style={styles.viewMiddle}>
           <View style={styles.imgAvatar}>
@@ -48,19 +48,16 @@ const styles = StyleSheet.create({
 
   viewBottom :{
     flex:1,    
-    backgroundColor: '#0698c4',       
+    backgroundColor: '#096796',       
     marginTop:3
   },
-  imgCaNhan: {
-    flex: 1,
+  imgHeader: {
     resizeMode: 'cover',
-    height:300
+    height:260
   },
-
   viewInfo:{
     padding:10
   },
-
   txtHoten:{
     fontSize:14,
     color: 'white', 
@@ -69,12 +66,9 @@ const styles = StyleSheet.create({
     fontSize:12,
     color: '#d0d6d9', 
   },
-
   imgAvatar: {
     height: 70,
     width: 70,
     borderRadius: 50,
-    padding:5
   },
-
 });
