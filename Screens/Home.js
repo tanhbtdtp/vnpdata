@@ -22,7 +22,7 @@ render(){
                   style={styles.imgAvatar}
                 />
           </View>
-          
+
           <View style={styles.viewInfo}>
             <Text style={styles.txtHoten}>Truong Van Doan</Text>
             <Text style={styles.txtDonvi}>PBH Chau Thanh</Text>
@@ -36,7 +36,8 @@ render(){
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1    
+    flex: 1    ,
+    backgroundColor:"white"
   },
 
    viewMiddle:{    
