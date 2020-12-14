@@ -22,6 +22,7 @@ render(){
                   style={styles.imgAvatar}
                 />
           </View>
+          
           <View style={styles.viewInfo}>
             <Text style={styles.txtHoten}>Truong Van Doan</Text>
             <Text style={styles.txtDonvi}>PBH Chau Thanh</Text>
