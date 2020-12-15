@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View,Image } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-
+import { Container,Content,Header,Left,Right,Icon } from 'native-base';
 
 export default class Home extends React.Component {
 render(){
