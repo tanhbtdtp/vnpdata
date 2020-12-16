@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native';
 
 import { Container, Content, Header, Left, Right, Icon, Item, Input, Card, CardItem } from 'native-base';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
-
+import RecommendedCardItem from '../Components/RecommendedCardItem';
 
 export default class Main extends React.Component {
 render(){
@@ -44,9 +44,21 @@ render(){
                             <Icon name="arrow-forward" style={{ fontSize: 18 }} />
                         </View>
                  </View>
-                 </Content>
-            
 
+                 <Card style={{ marginLeft: 5, marginRight: 5 }}>
+                        <CardItem header style={{ borderBottomWidth: 1, borderBottomColor: '#dee0e2' }}>
+                            <Text>Your Recommendations</Text>
+                        </CardItem>
+
+                        <RecommendedCardItem
+                            itemName="You can heal your life"
+                            itemCreator="Louise Hay"
+                            itemPrice="$10"
+                            savings="2.5"        
+                            rating={5}
+                        />                   
+                    </Card>
+                 </Content>
         </Container>
    
   );
@@ -58,37 +70,5 @@ const styles = StyleSheet.create({
     backgroundColor:"white"
   },
 
-   viewMiddle:{    
-    flexDirection:'row',
-    backgroundColor: '#348ceb', 
-    alignItems:'center',
-    height:100,   
-    marginTop:3
-  },
-
-  viewBottom :{
-    flex:1,    
-    backgroundColor: '#096796',       
-    marginTop:3
-  },
-  imgHeader: {
-    resizeMode: 'cover',
-    height:260
-  },
-  viewInfo:{
-    padding:10
-  },
-  txtHoten:{
-    fontSize:14,
-    color: 'white', 
-  },
-  txtDonvi:{
-    fontSize:12,
-    color: '#d0d6d9', 
-  },
-  imgAvatar: {
-    height: 70,
-    width: 70,
-    borderRadius: 50,
-  },
+   
 });
