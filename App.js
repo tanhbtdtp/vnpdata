@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Screens/Home';
 import Main from './Screens/Main';
 import KhachHang from './Screens/KhachHang';
+import GanGoi from './Screens/GanGoi';
 
 
 const Stack = createStackNavigator();
@@ -17,7 +18,7 @@ render(){
      <NavigationContainer>
       <Stack.Navigator>
           <Stack.Screen name="Main" component={Main}/>
-          <Stack.Screen name="Home" component={Home} />   
+          <Stack.Screen name="GanGoi" component={GanGoi} />   
           <Stack.Screen name="KhachHang" component={KhachHang} />        
       </Stack.Navigator>
      </NavigationContainer>    

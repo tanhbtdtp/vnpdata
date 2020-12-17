@@ -7,13 +7,13 @@ import RecommendedCardItem from '../Components/RecommendedCardItem';
 
 export default class Main extends React.Component {
 
-    onPressKhachHang = () => {
+      onPressKhachHang = () => {
             this.props.navigation.navigate('KhachHang');
-    }  
-
-    onPressGanGoi = () => {
-        this.props.navigation.navigate('Home');
-}  
+      }
+      onPressGanGoi = () => {
+        this.props.navigation.navigate('GanGoi');
+      }     
+        
 
 render(){
   return (
@@ -72,22 +72,21 @@ render(){
                     <Card>
                         <CardItem header style={{ borderBottomWidth: 1, borderBottomColor: '#dee0e2' }}>
                             <Text>Tiện ích</Text>
-                        </CardItem>                        
-                                      
+                        </CardItem>                                      
                        <TouchableOpacity>
                           <ListItem icon onPress={this.onPressKhachHang}>
-            <Left>
-              <Button style={{ backgroundColor: "#007AFF" }}>
-                <Icon active name="wifi" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Thông tin khách hàng</Text>
-            </Body>
-            <Right>              
-              <Icon active name="arrow-forward" />
-            </Right>
-          </ListItem>
+                    <Left>
+                      <Button style={{ backgroundColor: "#007AFF" }}>
+                        <Icon active name="wifi" />
+                      </Button>
+                    </Left>
+                    <Body>
+                      <Text>Thông tin khách hàng</Text>
+                    </Body>
+                    <Right>              
+                      <Icon active name="arrow-forward" />
+                    </Right>
+                </ListItem>
                        </TouchableOpacity>
                        <TouchableOpacity>
                           <ListItem icon onPress={this.onPressGanGoi}>
