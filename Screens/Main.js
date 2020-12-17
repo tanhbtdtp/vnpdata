@@ -1,17 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native';
-import { Container, Content, Header, Left, Right, Icon, Item, Input, Card, CardItem,List,ListItem,Button,Body } from 'native-base';
+import { Container, Content, Header, Left, Right, Icon, Item, Input, Card, CardItem,ListItem,Button,Body } from 'native-base';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import RecommendedCardItem from '../Components/RecommendedCardItem';
-import ToolLists from '../Components/ToolLists';
 
 
 export default class Main extends React.Component {
 
-    onPress = () => {
-             this.props.navigation.navigate('Home');
-                    };      
+    onPressKhachHang = () => {
+            this.props.navigation.navigate('KhachHang');
+    }  
 
+    onPressGanGoi = () => {
+        this.props.navigation.navigate('Home');
+}  
 
 render(){
   return (
@@ -27,11 +29,10 @@ render(){
                         <Icon name="md-card" style={{ color: 'white' }} />
                     </Right>
         </Header>
-
-                    <View style={{ position: 'relative', left: 0, right: 0, height: 70, backgroundColor: '#3a455c', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 5 }}>
+        <View style={{ position: 'relative', left: 0, right: 0, height: 70, backgroundColor: '#3a455c', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 5 }}>
                        <TouchableOpacity onPress={this.onPress}> 
                         <View style={{ width: 100, backgroundColor: '#e7e7eb', height: 50, borderRadius: 4, padding: 10 }}>
-                            <Text style={{ fontSize: 12}}>Shop by</Text>
+                            <Text style={{ fontSize: 12}}>Home by</Text>
                             <Text style={{ fontWeight: 'bold' }}>Vinaphone</Text>
                         </View>
                        </TouchableOpacity>
@@ -44,8 +45,7 @@ render(){
                     </View>
           </View>
 
-
-                <Content style={{ backgroundColor: '#d5d5d6'}}>
+        <Content style={{ backgroundColor: '#d5d5d6'}}>
 
                 <View style={{ height: 50, backgroundColor: 'white', flexDirection: 'row', paddingHorizontal: 5, alignItems: 'center', justifyContent: 'space-between' }}>
                         <Text>Hello, Thanh Tân</Text>
@@ -63,7 +63,8 @@ render(){
                             itemName="Gói cước VD149"
                             itemCreator="vinaphone"
                             itemPrice="149.000 đồng"
-                            savings="2.5"        
+                            savings="2.5"
+                            imageUri='https://vnpt.com.vn/Media/Images/27072020/Home CF.jpg'        
                             rating={5}
                         />                   
                     </Card>
@@ -74,7 +75,7 @@ render(){
                         </CardItem>                        
                                       
                        <TouchableOpacity>
-                          <ListItem icon onPress={this.onPress}>
+                          <ListItem icon onPress={this.onPressKhachHang}>
             <Left>
               <Button style={{ backgroundColor: "#007AFF" }}>
                 <Icon active name="wifi" />
@@ -88,7 +89,9 @@ render(){
             </Right>
           </ListItem>
                        </TouchableOpacity>
-                          <ListItem icon>
+                       <TouchableOpacity>
+                          <ListItem icon onPress={this.onPressGanGoi}>
+                              
             <Left>
               <Button style={{ backgroundColor: "#007AFF" }}>
                 <Icon active name="bluetooth" />
@@ -101,6 +104,8 @@ render(){
               <Icon active name="arrow-forward" />
             </Right>
           </ListItem>
+                       </TouchableOpacity>
+
                      </Card>        
 
 

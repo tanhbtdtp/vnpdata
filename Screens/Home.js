@@ -36,12 +36,12 @@ render(){
 const styles = StyleSheet.create({
   container: {
     flex: 1    ,
-    backgroundColor:"white"
+    backgroundColor:'#3a455c'
   },
 
    viewMiddle:{    
     flexDirection:'row',
-    backgroundColor: '#348ceb', 
+    backgroundColor: 'white', 
     alignItems:'center',
     height:100,   
     marginTop:3
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
   viewBottom :{
     flex:1,    
-    backgroundColor: '#096796',       
+    backgroundColor: '#3a455c',       
     marginTop:3
   },
   imgHeader: {
@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
     padding:10
   },
   txtHoten:{
-    fontSize:14,
-    color: 'white', 
+    fontSize:14
   },
   txtDonvi:{
     fontSize:12,
