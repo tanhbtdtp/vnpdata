@@ -26,10 +26,9 @@ class FormGanGoi extends Component {
     super(props);
     this.state = {
       data: [],
-      name: "",
-      address: "",
-      phonenumber: "",
+      username: "",
       goicuoc: "",
+      phonenumber: "",
       isStatus: "",
     };
   }
@@ -37,8 +36,8 @@ class FormGanGoi extends Component {
   _resetData = () => {
     this.setState({
       data: [],
-      name: "",
-      address: "",
+      username: "",
+      goicuoc: "",
       phonenumber: "",
       isStatus: "",
     });
@@ -52,8 +51,8 @@ class FormGanGoi extends Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: this.state.name,
-        address: this.state.address,
+        username: this.state.username,
+        goicuoc: this.state.goicuoc,
         phonenumber: this.state.phonenumber,
       }),
     })
@@ -74,9 +73,37 @@ class FormGanGoi extends Component {
 
   render() {
     return (
-      <View>
-        <View style={{ flexDirection: "row" }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
           <View style={{ width: "100%", backgroundColor: "white" }}>
+            <View
+              style={{
+                flex: 1,
+                height: "100%",
+                marginLeft: 5,
+                justifyContent: "center",
+              }}
+            >
+              <Item
+                style={{
+                  backgroundColor: "white",
+                  paddingHorizontal: 10,
+                  borderRadius: 4,
+                }}
+              >
+                <Icon name="person" style={{ fontSize: 20, paddingTop: 5 }} />
+                <Input
+                  placeholder="Số điện thoại..."
+                  value={this.state.phonenumber}
+                  onChangeText={(text) => {
+                    this.setState({
+                      phonenumber: text,
+                    });
+                  }}
+                />
+              </Item>
+            </View>
+
             <Item picker>
               <Picker
                 Icon="settings"
@@ -104,14 +131,15 @@ class FormGanGoi extends Component {
         <TouchableOpacity onPress={this._postData}>
           <View
             style={{
-              width: "100%",
               backgroundColor: "#3a455c",
               height: 50,
+              width: 350,
               borderRadius: 4,
               padding: 10,
               alignItems: "center",
               justifyContent: "center",
-              borderRadius: 23,
+              alignContent: "center",
+              borderRadius: 10,
               marginTop: 20,
             }}
           >
@@ -219,8 +247,8 @@ export default class GanGoi extends React.Component {
                   borderRadius: 4,
                 }}
               >
-                <Icon name="person" style={{ fontSize: 20, paddingTop: 5 }} />
-                <Input placeholder="Số điện thoại..." />
+                <Icon name="search" style={{ fontSize: 20, paddingTop: 5 }} />
+                <Input placeholder="Tìm kiếm..." />
               </Item>
             </View>
           </View>
