@@ -18,6 +18,7 @@ import {
   Input,
   Picker,
   Content,
+  Spinner,
 } from "native-base";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 
@@ -29,7 +30,7 @@ class FormGanGoi extends Component {
       username: "",
       goicuoc: "",
       phonenumber: "",
-      isStatus: "",
+      isLoading: true,
     };
   }
 
@@ -39,11 +40,13 @@ class FormGanGoi extends Component {
       username: "",
       goicuoc: "",
       phonenumber: "",
-      isStatus: "",
+      isLoading: true,
     });
   };
 
   _postData = () => {
+    this.setState({ isLoading: false });
+
     fetch("http:/ttkddongthap.vn/vnpapi/api/Khachhang/", {
       method: "POST",
       headers: {
@@ -52,8 +55,8 @@ class FormGanGoi extends Component {
       },
       body: JSON.stringify({
         username: this.state.username,
-        goicuoc: this.state.goicuoc,
         phonenumber: this.state.phonenumber,
+        goicuoc: this.state.goicuoc,
       }),
     })
       .then((response) => response.json())
@@ -61,13 +64,15 @@ class FormGanGoi extends Component {
         this.setState({ isStatus: json });
         if (this.state.isStatus[0].status === "Success") {
           Alert.alert("Cập nhật thành công.");
-          this._resetData();
         } else {
           Alert.alert("Cập nhật thất bại");
         }
       })
       .catch(() => {
         Alert.alert("Không thể kết nối Server. Liên hệ Admin.");
+      })
+      .finally(() => {
+        this._resetData();
       });
   };
 
@@ -94,6 +99,7 @@ class FormGanGoi extends Component {
                 <Icon name="person" style={{ fontSize: 20, paddingTop: 5 }} />
                 <Input
                   placeholder="Số điện thoại..."
+                  keyboardType="numeric"
                   value={this.state.phonenumber}
                   onChangeText={(text) => {
                     this.setState({
@@ -114,9 +120,9 @@ class FormGanGoi extends Component {
                 placeholderStyle={{ color: "#bfc6ea" }}
                 placeholderIconColor="#007aff"
                 selectedValue={this.state.goicuoc}
-                onValueChange={(value) => {
+                onValueChange={(text) => {
                   this.setState({
-                    goicuoc: value,
+                    goicuoc: text,
                   });
                   //console.log(this.state.goicuoc);
                 }}
@@ -128,25 +134,32 @@ class FormGanGoi extends Component {
             </Item>
           </View>
         </View>
+
         <TouchableOpacity onPress={this._postData}>
-          <View
-            style={{
-              backgroundColor: "#3a455c",
-              height: 50,
-              width: 350,
-              borderRadius: 4,
-              padding: 10,
-              alignItems: "center",
-              justifyContent: "center",
-              alignContent: "center",
-              borderRadius: 10,
-              marginTop: 20,
-            }}
-          >
-            <Text style={{ fontWeight: "bold", fontSize: 12, color: "white" }}>
-              Chấp nhận
-            </Text>
-          </View>
+          {!this.state.isLoading ? (
+            <Spinner color="red" />
+          ) : (
+            <View
+              style={{
+                backgroundColor: "#3a455c",
+                height: 50,
+                width: 350,
+                borderRadius: 4,
+                padding: 10,
+                alignItems: "center",
+                justifyContent: "center",
+                alignContent: "center",
+                borderRadius: 10,
+                marginTop: 20,
+              }}
+            >
+              <Text
+                style={{ fontWeight: "bold", fontSize: 12, color: "white" }}
+              >
+                Chấp nhận
+              </Text>
+            </View>
+          )}
         </TouchableOpacity>
       </View>
     );
@@ -267,22 +280,6 @@ export default class GanGoi extends React.Component {
           </View>
 
           <FormGanGoi />
-
-          <View style={{ flex: 1, padding: 20 }}>
-            {this.state.isLoading ? (
-              <ActivityIndicator />
-            ) : (
-              <FlatList
-                data={this.state.data}
-                keyExtractor={({ id }, index) => id}
-                renderItem={({ item }) => (
-                  <Text>
-                    {item.title}, {item.releaseYear}
-                  </Text>
-                )}
-              />
-            )}
-          </View>
         </Content>
       </Container>
     );
