@@ -3,6 +3,21 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { Item, Input, Icon, Button } from "native-base";
 
 export default class Login extends React.Component {
+constructor(props){
+  super(props);
+  this.state= {
+    username:"",
+    password:"",
+    isLogin :false
+  }
+}
+
+_login = ()=>{
+  const {password,username} = this.state
+   if (username === password) {
+    this.props.navigation.replace("Main");
+   }
+}
   render() {
     return (
       <View style={styles.container}>
@@ -32,7 +47,12 @@ export default class Login extends React.Component {
               }}
             >
               <Icon name="person" style={{ fontSize: 20, paddingTop: 5 }} />
-              <Input placeholder="Tài khoản..." />
+              <Input placeholder="Tài khoản..." 
+                     value ={this.state.username}
+                     onChangeText={(text) => {
+                     this.setState ({username:text})
+           }}
+              />
             </Item>
 
             <Item
@@ -44,11 +64,19 @@ export default class Login extends React.Component {
               }}
             >
               <Icon name="key" style={{ fontSize: 20, paddingTop: 5 }} />
-              <Input placeholder="Mật khẩu..." />
+              <Input placeholder="Mật khẩu..."  
+              value={this.state.password}
+                     onChangeText={(text) => {
+                          this.setState ({password:text})
+                     }}
+              />
             </Item>
 
             <View style={styles.viewLogin}>
-              <Button block info>
+              <Button block info 
+              onPress={this._login}
+              >
+          
                 <Text style={styles.txtLogin}>ĐĂNG NHẬP</Text>
               </Button>
             </View>

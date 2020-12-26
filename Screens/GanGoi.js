@@ -25,8 +25,7 @@ class FormGanGoi extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      username: "",
+      data: null,
       goicuoc: "",
       phonenumber: "",
       isLoading: true,
