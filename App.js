@@ -3,6 +3,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import Login from "./Screens/Login";
 import Home from "./Screens/Home";
 import Main from "./Screens/Main";
 import KhachHang from "./Screens/KhachHang";
@@ -16,6 +17,8 @@ export default class App extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login} />
+
           <Stack.Screen
             name="Main"
             component={Main}

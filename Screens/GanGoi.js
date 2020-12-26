@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ActivityIndicator,
-  FlatList,
-  Alert,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from "react-native";
 import {
   Container,
   Header,
@@ -19,8 +11,15 @@ import {
   Picker,
   Content,
   Spinner,
+  Card,
+  CardItem,
+  List,
 } from "native-base";
+
 import FAIcon from "react-native-vector-icons/FontAwesome";
+import RecommendedCardItem from "../Components/RecommendedCardItem";
+import DetailPacks from "../Components/DetailPacks";
+import { FlatList } from "react-native-gesture-handler";
 
 class FormGanGoi extends Component {
   constructor(props) {
@@ -150,13 +149,13 @@ class FormGanGoi extends Component {
                 justifyContent: "center",
                 alignContent: "center",
                 borderRadius: 10,
-                marginTop: 20,
+                marginVertical: 5,
               }}
             >
               <Text
                 style={{ fontWeight: "bold", fontSize: 12, color: "white" }}
               >
-                Chấp nhận
+                GÁN GÓI
               </Text>
             </View>
           )}
@@ -170,7 +169,7 @@ export default class GanGoi extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: null,
       isLoading: true,
     };
   }
@@ -180,6 +179,7 @@ export default class GanGoi extends React.Component {
       .then((response) => response.json())
       .then((json) => {
         this.setState({ data: json.movies });
+        //console.log(this.state.data);
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -187,7 +187,9 @@ export default class GanGoi extends React.Component {
       });
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.loadkhachhang();
+  }
 
   render() {
     return (
@@ -209,7 +211,11 @@ export default class GanGoi extends React.Component {
                 style={{ fontSize: 32, color: "white" }}
               />
               <Text
-                style={{ fontSize: 32, color: "white", paddingHorizontal: 10 }}
+                style={{
+                  fontSize: 32,
+                  color: "white",
+                  paddingHorizontal: 10,
+                }}
               >
                 Vnpt
               </Text>
@@ -276,10 +282,32 @@ export default class GanGoi extends React.Component {
               justifyContent: "space-between",
             }}
           >
-            <Text>Chọn gói cước</Text>
+            <Text style={{ fontWeight: "bold" }}>Chọn gói cước</Text>
           </View>
 
           <FormGanGoi />
+
+          <View
+            style={{
+              height: 50,
+              backgroundColor: "#e7e7eb",
+              flexDirection: "row",
+              paddingHorizontal: 5,
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginTop: 5,
+            }}
+          >
+            <Text style={{ fontWeight: "bold" }}>Chi tiết</Text>
+          </View>
+
+          <FlatList
+            data={this.state.data}
+            renderItem={(item) => {
+              //console.log(JSON.stringify(item));
+              return <DetailPacks data={item} />;
+            }}
+          />
         </Content>
       </Container>
     );
