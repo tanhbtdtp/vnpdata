@@ -2,15 +2,16 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Container, Content, Icon, Item, Input } from "native-base";
 
+import DetailKhachHang from "../Components/DetailKhachHang";
+
 class Details extends React.Component {
   render() {
-    const { ma_tb, ten_tb, diachi_tb } = this.props;
-
+    const { data } = this.props;
     return (
       <View>
-        <Text>Số điện thoại: {ma_tb} </Text>
-        <Text>Tên thuê bao: {ten_tb} </Text>
-        <Text>Địa chỉ: {diachi_tb} </Text>
+        <Text>Số điện thoại: {data.ma_tb} </Text>
+        <Text>Tên thuê bao: {data.ten_tb} </Text>
+        <Text>Địa chỉ: {data.diachi_tb} </Text>
       </View>
     );
   }
@@ -20,12 +21,9 @@ export default class KhachHang extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ma_tb: "",
-      ten_tb: "",
-      diachi_tb: "",
       data: "",
       id: null,
-      isLoading: true,
+      isLoading: false,
     };
   }
 
@@ -34,10 +32,8 @@ export default class KhachHang extends React.Component {
       .then((response) => response.json())
       .then((json) => {
         this.setState({
-          data: json,
-          ma_tb: json[0].ma_tb,
-          ten_tb: json[0].ten_tb,
-          diachi_tb: json[0].diachi_tb,
+          data: json[0],
+          isLoading: true,
         });
         //console.log(this.state.data[0].ma_tb);
       })
@@ -121,12 +117,7 @@ export default class KhachHang extends React.Component {
             <Text>Thông tin khách hàng</Text>
           </View>
 
-          <Details
-            data={this.state.data}
-            ma_tb={this.state.ma_tb}
-            ten_tb={this.state.ten_tb}
-            diachi_tb={this.state.diachi_tb}
-          />
+          <DetailKhachHang data={this.state.data} />
         </Content>
       </Container>
     );
